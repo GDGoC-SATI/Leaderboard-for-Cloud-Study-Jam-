@@ -465,7 +465,7 @@ export default function Leaderboard({ participants: rawParticipants }) {
         </section>
 
         <div className="flex items-center gap-3 text-sm text-white/70">
-          <span>Last updated: never</span>
+          <span>Last updated: 24 Oct 2025</span>
         </div>
       </div>
     </div>
