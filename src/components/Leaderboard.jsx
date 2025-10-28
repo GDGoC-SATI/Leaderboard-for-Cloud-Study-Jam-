@@ -75,11 +75,26 @@ function normalizeParticipant(p, idx) {
   };
 }
 
+// Data from the image
+const PROGRESS_METRICS = [
+  { metric: "No. of Correct Users Enrolled ✅", value: 184 },
+  { metric: "No. of users Redeemed Google Skills credits", value: 116 },
+  { metric: "Total number of participants completing all 19 Skill Badge", value: 23 },
+  { metric: "Total number of participants completing Arcade Game", value: 12 },
+  {
+    metric:
+      "Total Number of participants who completed both : all 19 skill badges + Arcade Game (Note: This is the count that will sum up for your overall milestone evaluation and recognition.)",
+    value: 9,
+  },
+];
+
 export default function Leaderboard({ participants: rawParticipants }) {
   const [q, setQ] = useState("");
   const [track, setTrack] = useState("All");
   const [sortBy, setSortBy] = useState("badges"); // "name" | "badges" | "arcade"
   const [sortDir, setSortDir] = useState("desc"); // "desc" | "asc"
+  // NEW STATE: To toggle visibility of the progress metrics
+  const [showProgress, setShowProgress] = useState(false); 
 
   // Normalize data
   const participants = useMemo(
@@ -175,7 +190,7 @@ export default function Leaderboard({ participants: rawParticipants }) {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center flex-wrap">
             {/* Search */}
             <div className="relative sm:w-1/2">
               <svg
@@ -234,8 +249,58 @@ export default function Leaderboard({ participants: rawParticipants }) {
             >
               {sortDir === "desc" ? "↓" : "↑"}
             </button>
+            
+            {/* NEW BUTTON: See All Progress */}
+            <button
+                onClick={() => setShowProgress(prev => !prev)}
+                className={`rounded-lg border px-3 py-2 text-sm transition font-semibold whitespace-nowrap ${
+                    showProgress
+                      ? 'border-red-400 bg-red-500/20 text-red-300 hover:bg-red-500/30'
+                      : 'border-sky-400 bg-sky-500/20 text-sky-300 hover:bg-sky-500/30'
+                }`}
+                title="Toggle overall progress metrics"
+            >
+                {showProgress ? "Hide Progress ⬆️" : "See All Progress 📊"}
+            </button>
           </div>
         </header>
+        
+        {/* --- */}
+        
+        {/* NEW SECTION: Progress Metrics Table */}
+        {showProgress && (
+            <section className="mb-8">
+                <h2 className="text-xl font-bold mb-4">Overall Progress Metrics</h2>
+                <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_8px_24px_rgba(0,0,0,0.35)] overflow-hidden">
+                    <table className="min-w-full divide-y divide-white/10">
+                        <thead>
+                            <tr className="bg-black/20">
+                                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white/70">
+                                    Metric
+                                </th>
+                                <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-white/70">
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/10">
+                            {PROGRESS_METRICS.map((item, index) => (
+                                <tr key={index} className="hover:bg-white/[0.03] transition">
+                                    <td className="px-6 py-4 whitespace-normal text-sm font-medium">
+                                        {item.metric}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-sky-300">
+                                        {item.value}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        )}
+        
+        {/* --- */}
 
         {/* Podium */}
         <section className="mb-8">
@@ -465,7 +530,7 @@ export default function Leaderboard({ participants: rawParticipants }) {
         </section>
 
         <div className="flex items-center gap-3 text-sm text-white/70">
-          <span>Last updated: 24 Oct 2025</span>
+          <span>Last updated: never</span>
         </div>
       </div>
     </div>
