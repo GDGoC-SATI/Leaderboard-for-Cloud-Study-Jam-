@@ -78,13 +78,13 @@ function normalizeParticipant(p, idx) {
 // Data from the image
 const PROGRESS_METRICS = [
   { metric: "No. of Correct Users Enrolled ✅", value: 184 },
-  { metric: "No. of users Redeemed Google Skills credits", value: 116 },
-  { metric: "Total number of participants completing all 19 Skill Badge", value: 23 },
-  { metric: "Total number of participants completing Arcade Game", value: 12 },
+  { metric: "No. of users Redeemed Google Skills credits", value: 130 },
+  { metric: "Total number of participants completing all 19 Skill Badge", value: 68 },
+  { metric: "Total number of participants completing Arcade Game", value: 35 },
   {
     metric:
       "Total Number of participants who completed both : all 19 skill badges + Arcade Game (Note: This is the count that will sum up for your overall milestone evaluation and recognition.)",
-    value: 9,
+    value: 34,
   },
 ];
 
