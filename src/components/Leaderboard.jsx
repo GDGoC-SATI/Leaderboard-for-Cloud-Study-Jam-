@@ -78,13 +78,13 @@ function normalizeParticipant(p, idx) {
 // Data from the image
 const PROGRESS_METRICS = [
   { metric: "No. of Correct Users Enrolled ✅", value: 184 },
-  { metric: "No. of users Redeemed Google Skills credits", value: 133 },
-  { metric: "Total number of participants completing all 19 Skill Badge", value: 82 },
-  { metric: "Total number of participants completing Arcade Game", value: 60 },
+  { metric: "No. of users Redeemed Google Skills credits", value: 135 },
+  { metric: "Total number of participants completing all 19 Skill Badge", value: 91 },
+  { metric: "Total number of participants completing Arcade Game", value: 89 },
   {
     metric:
       "Total Number of participants who completed both : all 19 skill badges + Arcade Game (Note: This is the count that will sum up for your overall milestone evaluation and recognition.)",
-    value: 58,
+    value: 84,
   },
 ];
 
@@ -530,7 +530,7 @@ export default function Leaderboard({ participants: rawParticipants }) {
         </section>
 
         <div className="flex items-center gap-3 text-sm text-white/70">
-          <span>Last updated: 30 Oct 2025 </span>
+          <span>Last updated: 31 Oct 2025 </span>
         </div>
       </div>
     </div>
